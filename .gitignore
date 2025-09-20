@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-arg.txt
+
+# Django
+*.sqlite3
+media/
+static/
+local_settings.py
+
+# IDE specific files
+.vscode/ # VS Code
+
+# Logs
+*.log
+
