@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}TerraTrac{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      {% comment %} Dynamic Navigation Menu {% endcomment %}
+      <ul>
+        <li><a href="{% url 'forest-area' %}">Forests</a></li>
+        <li><a href="{% url 'ndvi-calc' %}">NDVI Calc</a></li>
+        <li><a href="{% url 'report-create' %}">Report</a></li>
+
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">Profile ({{ user.username }})</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  {% if messages %}
+  <section class="messages">
+    <ul>
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <small>
+      TerraTrac &copy; {% now "Y" %}  
+      | Powered by Django
+      {% if user.is_authenticated %}
+        | Logged in as <strong>{{ user.username }}</strong>
+      {% endif %}
+    </small>
+  </footer>
+</body>
+</html>
