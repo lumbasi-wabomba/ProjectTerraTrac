@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -12,15 +12,17 @@
       {% comment %} Dynamic Navigation Menu {% endcomment %}
       <ul>
         <li><a href="{% url 'forest-area' %}">Forests</a></li>
-        <li><a href="{% url 'ndvi-calc' %}">NDVI Calc</a></li>
+        <li><a href="{% url 'ndvi' %}">NDVI Calc</a></li>
         <li><a href="{% url 'report-create' %}">Report</a></li>
 
         {% if user.is_authenticated %}
           <li><a href="{% url 'profile' %}">Profile ({{ user.username }})</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'alert' %}">Alerts</a></li>
+          <li><a href="{% url 'community-report' %}">Community Reports</a></li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'register' %}">Sign Up</a></li>
         {% endif %}
       </ul>
     </nav>
